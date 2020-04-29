@@ -126,7 +126,7 @@
 
                     <li class="nav-item dropdown"><a class="nav-link pr-0" id="navbarDropdownUser" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <div class="avatar avatar-xl">
-{{--                                <img class="rounded-circle perfil" src="{{asset('event/img/avatar.png')}}" alt="" />--}}
+                                <img class="rounded-circle perfil" src="{{asset('event/img/avatar.png')}}" alt="" />
                             </div>
                         </a>
 

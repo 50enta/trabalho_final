@@ -5,7 +5,7 @@
     h3,h4,p{
         padding-left: 5px;
     }
-    #botao{
+    #editbnt{
         margin-left: 250px;
     }
 </style>
@@ -27,18 +27,18 @@
                                 <div class="profile-picture profile-picture-lg bg-gradient bg-primary mt-5">
                                     <img src="{{asset('event/img/profile-pic.jpg')}}" width="" height="">
                                 </div>
-{{--                                <p class="mt-5 mb-4">{{auth()->guard('web')->user()->name}}</p>--}}
+                                <p class="mt-5 mb-4">{{auth()->guard('web')->user()->name}}</p>
 
-                                <input name="name"  value="{{auth()->guard('web')->user()->name}}">
+                                <input name="name" id="name" value="{{auth()->guard('web')->user()->name}}"  style="color: #0a151f" disabled>
 
 
                             </div>
 
 
                         </div>
-                            <h4>Informacoes Basicas</h4> <a class="btn btn-primary " onclick="edit" id="botao">Editar perfil</a><br>
-                            <input name="name"  id="email" value="{{auth()->guard('web')->user()->email}}">
-                            <input name="name" id="name" value="{{auth()->guard('web')->user()->name}}">
+                            <h4>Informacoes Basicas</h4> <a class="btn btn-primary " onclick="editar()" id="editbnt">Editar perfil</a><br>
+                            <input name="name"  id="email" value="{{auth()->guard('web')->user()->email}} " disabled>
+
                         </div>
 
                     </div>
@@ -52,15 +52,14 @@
 
                         <div class="panel-body ">
 
-                            <label for="price1" id="price11">5.00</label>
-                            <input type='button' onclick='changePrice()'/>
 
                         </div>
                     </div>
                 </div>
             <script type="text/javascript">
-                function changePrice(){
-                    document.getElementById('price11').innerHTML = '2.99';
+                function editar(){
+                    document.getElementById('name').disabled= false;
+                    document.getElementById('email').disabled= false;
                 }
             </script>
 
