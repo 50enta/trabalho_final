@@ -25,7 +25,7 @@
                         <div class="card card-md bg-primary bg-gradient text-center">
                             <div class="card-body">
                                 <div class="profile-picture profile-picture-lg bg-gradient bg-primary mt-5">
-                                    <img src="{{asset('quilpro/img/profile-pic.jpg')}}" width="" height="">
+                                    <img src="{{asset('event/img/profile-pic.jpg')}}" width="" height="">
                                 </div>
 {{--                                <p class="mt-5 mb-4">{{auth()->guard('web')->user()->name}}</p>--}}
 
