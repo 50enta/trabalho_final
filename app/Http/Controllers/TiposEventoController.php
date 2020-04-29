@@ -32,9 +32,9 @@ class TiposEventoController extends Controller
         return view('event.Inicio', compact('dados'));
     }
 
-    public function mostrarDetalhes()
+    public function mostrarDetalhes($tipo_id)
     {
-        $dados['tipo_eventos']=tipos_evento::where('apagado','0')->get();
+        $dados['tipo_eventos']=tipos_evento::find($tipo_id);
         return view('cliente.tela_DetalhesEventos', compact('dados'));
     }
 

@@ -82,13 +82,14 @@ Route::post('/eliminarImagem', 'GaleriaImagemController@eliminarImagem');
 
 Route::group(['middleware' =>'web'], function () {
     Route::get('/', 'TiposEventoController@displayInicio');
-    Route::get('/detalhes', 'TiposEventoController@mostrarDetalhes');
+    Route::get('/detalhes/{tipo_id}', 'TiposEventoController@mostrarDetalhes')->name('/detalhes/{tipo_id}');;
 
     Route::group(['middleware' =>'auth:web'], function (){
         Route::get('/efectuarReserva', 'EventoController@index')->name('/efectuarReserva');
         Route::post('/adicionarReserva', 'EventoController@addEvent')->name('/adicionarReserva');
 
-        Route::get('/perfil', 'TipoUserController@perfilCliente')->name('/perfil')->middleware('auth');
+//        Route::get('/perfil', 'PerfilController@index')->name('/perfil')->middleware('auth');
+        Route::get('/perfil/{user_id}', 'PerfilController@findUser')->name('/{user_id}');
     });
 });
 

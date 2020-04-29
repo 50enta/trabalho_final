@@ -7,7 +7,7 @@
     <div id="detalhes" class="section">
           <div class="row">
 
-             detalhes
+              {{$dados['tipo_eventos']->descricao}}
 
 
             </div>

@@ -28,7 +28,18 @@
 	<link type="text/css" rel="stylesheet" href="{{asset('event/css/style.css')}}" />
 
 
+<style>
+    .main-nav li.active a:after {
+        content: "";
+        height: 3px;
+        position: absolute;
+        bottom: -3px;
+        width: 100%;
+        left: 0;
+        background: #dd0a37;
+    }
 
+</style>
 
 
 	<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
@@ -48,7 +59,7 @@
 			<div class="navbar-header">
 				<!-- Logo -->
 				<div class="navbar-brand">
-                    <a class="navbar-brand" href="{{ url('/') }}"> SHIGOM | RECANTO FAMILIAR -3 </a>
+                    <a class="navbar-brand" href="{{ url('/') }}"> SHIGOM | RECANTO FAMILIAR  </a>
 				</div>
 				<!-- /Logo -->
 
@@ -63,37 +74,58 @@
 			<!-- Navigation -->
 			<nav id="nav">
 
-                <ul class="dropdown show navbar-right">
-                    <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-{{--                        {{auth()->guard('web')->user()->name}}--}}
-                    </a>
-
-                    <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-{{--                        <a class="dropdown-item" href="#">Action</a>--}}
-{{--                        <a class="dropdown-item" href="#">Another action</a>--}}
-                        <a class="dropdown-item" href="{{ route('/admin/logout') }}" onclick="event.preventDefault(); document.getElementById('frm-logout').submit();">Sair</a>
-                    </div>
-                </ul>
 
 				<ul class="main-nav nav navbar-nav navbar-right">
-					<li ><a href="{{url('/')}}">Home</a></li>
-					<li class="nav-item active"><a href="{{url('/#efectuarReserva')}}">Agendar evento</a></li>
-					<li><a href="{{url('/perfil')}}">Meu perfil</a></li>
-                    <li><a href="{{url('/galeria')}}">Galeria</a></li>
-{{--					<li><a href="#speakers">Speakers</a></li>--}}
-					<li><a href="#sponsors">Nossos Servicos</a></li>
-					<li><a href="#contact">Contacto</a></li>
+					<li ><a href="{{url('/')}}">Inicio</a></li>
+					<li  ><a href="{{url('/efectuarReserva')}}">Agendar evento</a></li>
+					<li><a href="{{url('/perfil/'.auth()->guard('web')->user()->id)}}">Meu perfil</a></li>
+                    <li><a href="{{url('/#galeria')}}">Galeria</a></li>
+                    <li><a href="#sponsors">Nossos Servicos</a></li>
+					<li ><a href="{{url('/#contact')}}">Contacto</a></li>
+
+                    <li class="nav-item dropdown"><a class="nav-link pr-0" id="navbarDropdownUser" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <div class="avatar avatar-xl">
+                                <img class="rounded-circle perfil" src="{{asset('event/img/avatar.png')}}" alt="" />
+                            </div>
+                        </a>
+
+
+                    @guest
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+
+                        </li>
+                        @if (Route::has('register'))
+                            {{--                            <li class="nav-item">--}}
+                            {{--                                <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>--}}
+                            {{--                            </li>--}}
+                        @endif
+                    @else
+                        <li class="nav-item dropdown">
+                            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                {{ Auth::user()->name }} <span class="caret"></span>
+                            </a>
+
+                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="{{ route('logout') }}"
+                                   onclick="event.preventDefault();
+                                                             document.getElementById('logout-form').submit();">
+                                    {{ __('Logout') }}
+                                </a>
+
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                    @csrf
+                                </form>
+                            </div>
+                        </li>
+                        @endguest
+                        </li>
+                </ul>
 
 
 
 
-				</ul>
-
-
-
-
-
-			</nav>
+            </nav>
 			<!-- /Navigation -->
 		</div>
 		<!-- /container -->
