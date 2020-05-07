@@ -55,10 +55,18 @@
 
                     <form  method='POST' action="{{ url('/adicionarReserva') }}" class="">
                         @csrf
+                        <div class="form-group col-md-12 offset-2">
+                            <label for="tipo"> Tipo de Evento</label>
+                            <select name="tipos_evento_id" type="text" class="form-control" >
+                                <option>Seleccione</option>
+                                @foreach($dados['tipos'] as $item)
+                                    <option value="{{$item->id}}"->{{$item->descricao}}</option>
+                                @endforeach
 
+                            </select>
+                        </div>
                         <div class="form-group col-md-12 text-left">
-                            <br>
-                            <br>
+
                             <label for="nome "> Descricao do evento</label>
 
                             <input type= "text" class="form-control" name="descricao" id="descricao"  placeholder=" Descricao">
