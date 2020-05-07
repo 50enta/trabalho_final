@@ -23,8 +23,12 @@ class CreateEventosTable extends Migration
             $table->string('cor');
             $table->string('status')->default('Pendente');
 
+            $table->integer('user_id')->unsigned()->nullable();
+            $table->foreign('user_id')->references('id')->on('users');
+
             $table->integer('tipos_evento_id')->unsigned()->nullable();
             $table->foreign('tipos_evento_id')->references('id')->on('tipos_eventos');
+
             $table->timestamps();
         });
     }

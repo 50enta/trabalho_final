@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller as Controller;
 
 use App\evento;
+use App\tipos_evento;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 use MaddHatter\LaravelFullCalendar\ServiceProvider;
@@ -19,7 +20,7 @@ class EventoController extends Controller
      */
     public function index()
     {
-
+        $dados['tipos']=tipos_evento::where('apagado','0')->get();
         $events = Evento::where('status','Aprovado')->get();
         $event_list = [];
         foreach ($events as $key => $event) {
@@ -38,7 +39,8 @@ class EventoController extends Controller
         }
 
         $calendar_details = Calendar::addEvents($event_list);
-        return view('cliente.telaEfectuar_Reserva', compact('calendar_details') );
+        return view('cliente.telaEfectuar_Reserva', compact(['calendar_details','dados']) );
+//        return view('cliente.tela_DetalhesEventos', compact('dados'));
 //        return view('admin.telaAprovar_Reservas', compact('$calendar_details ') );
 
 
@@ -48,9 +50,11 @@ class EventoController extends Controller
     {
         $validator = Validator::make($request->all(), [
             'descricao' => 'required',
+            'tipos_evento_id' => 'required',
             'data_inicio' => 'required',
             'data_fim' => 'required',
-            'cor' => 'required'
+            'cor' => 'required',
+             'tipos_evento_id' => 'required'
 
         ]);
         if ($validator->fails()) {
@@ -60,12 +64,13 @@ class EventoController extends Controller
 
         $event = new Evento;
         $event->descricao = $request['descricao'];
+        $event->tipos_evento_id = $request['tipos_evento_id'];
         $event->data_inicio = $request['data_inicio'];
         $event->data_fim = $request['data_fim'];
         $event->cor = $request->input('cor');
         $event->save();
 
-        \Session::flash('success', 'O seu pedido foi enviado com sucesso, aguarde pela confirmcao!');
+        \Session::flash('success', 'O seu pedido foi enviado com sucesso, aguarde pela confirmacao!');
         return Redirect::to('/efectuarReserva');
 
 
@@ -78,7 +83,7 @@ class EventoController extends Controller
     {
 
         $dados['eventos']=Evento::all();
-        return view('admin.telaAprovar_Reservas', compact('dados'));
+        return view('admin.telaVisualizar_reservas', compact('dados'));
 
     }
 
