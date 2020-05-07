@@ -52,9 +52,6 @@
 <!-- QuillPro Styles -->
     <link rel="stylesheet" href="{{asset('quilPro/css/quillpro/quillpro.css')}}">
 
-    <link rel="stylesheet" href="{{asset('quilPro/plugins/datatables/css/responsive.dataTables.min.css')}}">
-    <link rel="stylesheet" href="{{asset('quilPro/plugins/datatables/css/responsive.bootstrap4.min.css')}}">
-
 
     <!-- Start of Async Drift Code -->
     <script>
@@ -363,10 +360,6 @@
 <script type="text/javascript" src="{{asset('quilPro/js/misc/holder.min.js')}}"></script>
 <!-- SCRIPTS - OPTIONAL END -->
 
-<!-- Datatables -->
-<script type="text/javascript" src="{{asset('quilPro/plugins/datatables/js/jquery.dataTables.min.js')}}"></script>
-<script type="text/javascript" src="{{asset('quilPro/plugins/datatables/js/dataTables.bootstrap4.min.js')}}"></script>
-<script type="text/javascript" src="{{asset('quilPro/plugins/datatables/js/dataTables.responsive.min.js')}}"></script>
 {{--<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>--}}
 
 

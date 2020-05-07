@@ -75,7 +75,6 @@ Route::post('/adicionarFotos', 'GaleriaImagemController@store');
 Route::post('/editarImagem', 'GaleriaImagemController@editarImagem');
 Route::post('/eliminarImagem', 'GaleriaImagemController@eliminarImagem');
 
-Route::get('/verReservas', 'EventoController@verReservas');
 
 
 

@@ -11,33 +11,19 @@
 
                     <di class="col-md-12">
 
-                        <div class="col-md-3" style="padding: 0px" >
-                            <img  src="{{ asset('images/'.$dados['tipo_eventos']->image)}}" class="zoomInUp"  style="width: 350px;height: 250px" alt="">
+                        <div class="col-md-3" style="padding: 0px">
+                            <img  src="{{ asset('images/'.$dados['tipo_eventos']->image)}}" class="zoom img-fluid " style="width: 350px;height: 250px" alt="">
                         </div>
-                        <div class="col-md-8" style="padding: 0px">
+                        <div class="col-md-9" style="padding: 0px">
                             <div class=" card box bg-success mb-3 text-center">
                                 <div class="card-body">
                                     <blockquote class="blockquote">
                                         <p>  {{$dados['tipo_eventos']->comentario}}</p>
-                                        <footer>SHigom <cite title="Source Title">Recanto Familiar</cite></footer>
+                                        <footer>Someone famous in <cite title="Source Title">Source Title</cite></footer>
                                     </blockquote>
                                 </div>
                             </div>
                         </div>
-                   </di>
-
-
-          </div>
-    </div>
-
-
-    </div>
-
-
-
-
-
-@endsection
 
 {{--                        <div class="col-md-3"  style="padding: 0px">--}}
 {{--                            <img  src="{{ asset('images/'.$dados['tipo_eventos']->image)}}" class="zoom img-fluid " style="width: 350px;height: 250px" alt="">--}}
@@ -51,3 +37,22 @@
 
 {{--                            </div>--}}
 {{--                        </div>--}}
+                    </di>
+
+
+
+
+
+
+
+          </div>
+    </div>
+
+
+    </div>
+
+
+
+
+
+@endsection
