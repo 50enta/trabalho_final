@@ -52,10 +52,10 @@
                 </div>
                 <div class="col-md-4 " id="form" style="border-collapse: collapse" >
 
-
+                    @if(auth::user())
                     <form  method='POST' action="{{ url('/adicionarReserva') }}" class="">
                         @csrf
-
+                        <input type= "text" class="form-control" name="user_id" id="user_id" value="{{auth::user()->id}}">
                         <div class="form-group col-md-12">
                             <label for="tipo"> Tipo de Evento</label>
                             <select name="tipos_evento_id" type="text" class="form-control" id="tipo" >
@@ -94,6 +94,7 @@
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
                             <button type="submit" id="add" class="btn btn-success">Adicionar</button>
                         </div>
+                        @endif
                     </form>
                     <br>
                     <br>

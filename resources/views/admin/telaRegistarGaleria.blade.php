@@ -53,7 +53,7 @@
                                     <tr>
                                         <td>{{$item->id}}</td>
 
-                                        <td><img src="{{ asset('images/'.$item->image)}}" ></td>
+                                        <td><img src="{{ asset('images/'.$item->image)}}" style="width: 200px; height: 150px"></td>
 
                                         <td >{{$item->categoria_imagens_id}}</td>
 
