@@ -5,6 +5,7 @@ use App\Http\Controllers\Controller as Controller;
 
 use App\evento;
 use App\tipos_evento;
+use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 use MaddHatter\LaravelFullCalendar\ServiceProvider;
@@ -20,6 +21,7 @@ class EventoController extends Controller
      */
     public function index()
     {
+
         $dados['tipos']=tipos_evento::where('apagado','0')->get();
         $events = Evento::where('status','Aprovado')->get();
         $event_list = [];
@@ -50,7 +52,7 @@ class EventoController extends Controller
     {
         $validator = Validator::make($request->all(), [
             'descricao' => 'required',
-            'tipos_evento_id' => 'required',
+            'user_id' => 'required',
             'data_inicio' => 'required',
             'data_fim' => 'required',
             'cor' => 'required',
@@ -65,6 +67,7 @@ class EventoController extends Controller
         $event = new Evento;
         $event->descricao = $request['descricao'];
         $event->tipos_evento_id = $request['tipos_evento_id'];
+        $event->user_id = $request['user_id'];
         $event->data_inicio = $request['data_inicio'];
         $event->data_fim = $request['data_fim'];
         $event->cor = $request->input('cor');
@@ -81,7 +84,7 @@ class EventoController extends Controller
 
     public function verReservas()
     {
-
+        $dados['users']=User::all();
         $dados['eventos']=Evento::all();
         return view('admin.telaVisualizar_reservas', compact('dados'));
 
