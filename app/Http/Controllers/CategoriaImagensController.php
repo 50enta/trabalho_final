@@ -36,7 +36,9 @@ class CategoriaImagensController extends Controller
      */
     public function store(Request $request)
     {
-        //
+    $results =DB::select("SELECT * FROM galeria_imagems INNER JOIN categoria_imagens ON galeria_imagems.ID = categoria_imagens.ID ;");
+
+        return view('admin.telaRegistarGaleria', ['Categoria_imagens' => $results] );
     }
 
     /**

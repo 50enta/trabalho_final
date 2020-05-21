@@ -15,6 +15,8 @@ class GaleriaImagemController extends Controller
      */
     public function index()
     {
+//        $results =DB::select("SELECT * FROM galeria_imagems INNER JOIN categoria_imagens ON galeria_imagems.ID = categoria_imagens.ID ;");
+
         $dados['imagem']= galeria_imagem::where('apagado','0')->get();
         $dados['categoria'] =categoria_imagens::where('apagado','0')->get();
 
@@ -72,7 +74,12 @@ class GaleriaImagemController extends Controller
 
 
     }
+    public function pegarCategoria(){
 
+        $results =DB::select("SELECT * FROM galeria_imagems INNER JOIN categoria_imagens ON galeria_imagems.ID = categoria_imagens.ID ;");
+
+        return view('admin.telaRegistarGaleria', ['Categoria_imagens' => $results] );
+    }
 
     public function editarImagem(Request $request)
     {

@@ -4,22 +4,28 @@
 
 
 <style>
+    .bg-signin2{
+        background: linear-gradient(45deg, rgba(0, 0, 0, 0.43), rgba(0, 0, 0, 0.48));
+        height: 100%;
+        border-top-left-radius: .25rem;
+        border-bottom-left-radius: .25rem;
+    }
 
 </style>
     <div id="detalhes" class="section">
           <div class="row">
-
+              {{--                        <img  class="bg-signin2" src="{{asset('quilPro/img/space/1.jpg')}}">--}}
                     <di class="col-md-12">
 
                         <div class="col-md-3" style="padding: 0px">
-                            <img  src="{{ asset('images/'.$dados['tipo_eventos']->image)}}" class="zoom img-fluid " style="width: 350px;height: 250px" alt="">
+                            <img  src="{{ asset('images/'.$dados['tipo_eventos']->image)}}" class="zoom img-fluid bg-signin2" style="width: 350px;height: 250px" alt="">
                         </div>
                         <div class="col-md-9" style="padding: 0px">
                             <div class=" card box bg-success mb-3 text-center">
-                                <div class="card-body">
+                                <div class="card-body card-img-overlay">
                                     <blockquote class="blockquote">
                                         <p>  {{$dados['tipo_eventos']->comentario}}</p>
-                                        <footer>Someone famous in <cite title="Source Title">Source Title</cite></footer>
+                                        <footer>SHIGOM <cite title="Source Title">Recanto Familiar</cite></footer>
                                     </blockquote>
                                 </div>
                             </div>

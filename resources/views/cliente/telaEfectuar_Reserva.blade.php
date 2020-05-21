@@ -55,7 +55,7 @@
                     @if(auth::user())
                     <form  method='POST' action="{{ url('/adicionarReserva') }}" class="">
                         @csrf
-                        <input type= "text" class="form-control" name="user_id" id="user_id" value="{{auth::user()->id}}">
+                        <input type= "text" class="form-control hidden" name="user_id" id="user_id" value="{{auth::user()->id}}">
                         <div class="form-group col-md-12">
                             <label for="tipo"> Tipo de Evento</label>
                             <select name="tipos_evento_id" type="text" class="form-control" id="tipo" >

@@ -18,7 +18,6 @@
                                         data-target="#addmodal">adicionar
                                 </button>
 
-
                             </div>
                         </div>
 
@@ -49,13 +48,14 @@
                                 </thead>
                                 <tbody>
                                 @foreach($dados['imagem'] as $item)
+{{--                                    @foreach($results as $categoria )--}}
 
                                     <tr>
                                         <td>{{$item->id}}</td>
 
                                         <td><img src="{{ asset('images/'.$item->image)}}" style="width: 200px; height: 150px"></td>
 
-                                        <td >{{$item->categoria_imagens_id}}</td>
+{{--                                        <td >{{$item->categoria_imagens_id}}{{$categoria->descricao}}</td>--}}
 
 
                                         <td class="text-right">
@@ -72,6 +72,7 @@
 
                                     </tr>
 
+{{--                                @endforeach--}}
                                 @endforeach
 
                                 </tbody>

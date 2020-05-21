@@ -70,7 +70,7 @@ Route::post('/eliminarItensMaterial','itensMaterialController@eliminarItens');
 Route::get('/pacotes', 'PacoteEventoController@index');
 
 Route::get('/galeria', 'GaleriaImagemController@index');
-//Route::get('/galeria', 'categoriaImagensController@index'); //mudar essa rota para outro nome: não pode ser os dados sao para a mesma rota: não podem ter o mesmo nome
+Route::get('/store', 'categoriaImagensController@store');
 Route::post('/adicionarFotos', 'GaleriaImagemController@store');
 Route::post('/editarImagem', 'GaleriaImagemController@editarImagem');
 Route::post('/eliminarImagem', 'GaleriaImagemController@eliminarImagem');
@@ -89,8 +89,12 @@ Route::group(['middleware' =>'web'], function () {
         Route::get('/efectuarReserva', 'EventoController@index')->name('/efectuarReserva');
         Route::post('/adicionarReserva', 'EventoController@addEvent')->name('/adicionarReserva');
 
-//        Route::get('/perfil', 'PerfilController@index')->name('/perfil')->middleware('auth');
-        Route::get('/perfil/{user_id}', 'PerfilController@findUser')->name('/{user_id}');
+
+//        Route::get('/perfil/{user_id}', 'PerfilController@findUser')->name('/perfil/{user_id}');
+//        Route::post('/updatePerfil', 'PerfilController@testeUpdate');
+
+                Route::get('/perfil/{user_id}', 'PerfilController@index')->name('/perfil/{user_id}');
+                 Route::post('/updatePerfil', 'PerfilController@update')->name('/updatePerfil');;
     });
 });
 

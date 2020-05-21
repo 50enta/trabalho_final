@@ -107,6 +107,7 @@
                             </a>
 
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="{{url('/perfil/'.auth()->guard('web')->user()->id)}}">   {{ __('Perfil') }}</a><br><br>
                                 <a class="dropdown-item" href="{{ route('logout') }}"
                                    onclick="event.preventDefault();
                                                              document.getElementById('logout-form').submit();">
