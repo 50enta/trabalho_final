@@ -233,7 +233,7 @@
                                 <h4>Piscina</h4>
                             </div>
                             <div class="col-md-2">
-                                <h4>Cozinha</h4>
+                                <h4>Cozinha gggg</h4>
                             </div>
                             <div class="col-md-2">
                                 <h4>Ar-Condicionado</h4>
