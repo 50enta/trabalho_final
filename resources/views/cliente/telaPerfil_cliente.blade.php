@@ -1,27 +1,27 @@
 @extends('event.Inicio-2')
 @section('teste')
 
-    <style>
-        .kv-avatar .krajee-default.file-preview-frame,.kv-avatar .krajee-default.file-preview-frame:hover {
-            margin: 0;
-            padding: 0;
-            border: none;
-            box-shadow: none;
-            text-align: center;
-        }
-        .kv-avatar {
-            display: inline-block;
-        }
-        .kv-avatar .file-input {
-            display: table-cell;
-            width: 213px;
-        }
-        .kv-reqd {
-            color: red;
-            font-family: monospace;
-            font-weight: normal;
-        }
-    </style>
+<style>
+    input[type="file"]{
+        dysplay:none;
+    }
+   #file{
+        color: white;
+        height: 34px;
+        width: 100px;
+        background-color:  #286090;
+        position: absolute;
+        margin: auto;
+
+       bottom: 0;
+       left: 0;
+       right: 0;
+        /*font-size: 20px;*/
+       display: flex;
+       justify-content: center;
+       align-items: center;
+    }
+</style>
 @if(count($errors)>0)
 
     <div class="alert alert-danger">
@@ -43,7 +43,7 @@
 
         <div id="" class=" row section">
             <div class="card-body">
-                <form  method="POST" action="{{ url('/updatePerfil') }}" enctype="multipart/form-data">
+                <form  method="POST" action="{{ url('/updatePerfil') }}"  enctype="multipart/form-data">
                     {{csrf_field() }}
                 <div class="col-md-4">
 
@@ -51,27 +51,18 @@
                             <div class="card card-md bg-secondary bg-gradient text-center">
                                 <div class="card-body">
                                     <br>
+{{--                                    {{asset('event/img/profile-pic.jpg')}}--}}
+{{--                                    {{ asset('images/'.$item->image)}}--}}
                                     <div class="profile-picture profile-picture-lg bg-gradient bg-primary mt-5">
-                                        <img src="{{asset('event/img/profile-pic.jpg')}}" width="" height="">
+                                        <img src=" {{ asset('images/'.auth()->guard('web')->user()->image)}}" width="" height="">
                                     </div>
                                     <br>
-                                    <a class="btn btn-primary " onclick="editar()" id="editbnt" style="margin-bottom: 10px">Alterar Foto </a>
+                                    <input class="" type="file" id="file" name="image" accept="image/*" >
+                                    <label id="file" for="file">Alterar foto</label>
+
                                 </div>
                             </div>
                         </div>
-
-                    <div class="col-sm-4 text-center">
-                        <div class="kv-avatar">
-                            <div class="file-loading">
-                                <input id="avatar-2" name="avatar-2" type="file" required>
-                            </div>
-                        </div>
-                        <div class="kv-avatar-hint">
-                            <small>Select file < 1500 KB</small>
-                        </div>
-
-
-                    </div>
 
                 </div>
                 <div class="col-md-2"></div>
@@ -137,6 +128,12 @@
             </div>
 
         </div>
+    <script src="js/file-upload.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('.file-upload').file_upload();
+        });
+    </script>
     <!-- the fileinput plugin initialization -->
     <script>
         var btnCust = '<button type="button" class="btn btn-secondary" title="Add picture tags" ' +

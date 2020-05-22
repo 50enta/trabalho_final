@@ -110,6 +110,13 @@ class PerfilController extends Controller
                 ]);
             }
 //            if ($validate) {
+            if($request->hasFile('image')){
+                $image =$request->image;
+                $avatar_new_name =time().$image->getClientOriginalName();
+                $image->move('images/avatars' , $avatar_new_name);
+                $user->save();
+
+            }
                 $user->name = $request['name'];
                 $user->apelido = $request['apelido'];
                 $user->email = $request['email'];
