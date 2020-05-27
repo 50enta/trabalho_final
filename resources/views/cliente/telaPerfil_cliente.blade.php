@@ -54,7 +54,7 @@
 {{--                                    {{asset('event/img/profile-pic.jpg')}}--}}
 {{--                                    {{ asset('images/'.$item->image)}}--}}
                                     <div class="profile-picture profile-picture-lg bg-gradient bg-primary mt-5">
-                                        <img src=" {{ asset('images/'.auth()->guard('web')->user()->image)}}" width="" height="">
+                                        <img src=" {{ asset('images/avatars/'.auth()->guard('web')->user()->image)}}" width="" height="">
                                     </div>
                                     <br>
                                     <input class="" type="file" id="file" name="image" accept="image/*" >
@@ -63,6 +63,7 @@
                                 </div>
                             </div>
                         </div>
+                    <img src=" {{ asset('images/avatars/'.auth()->guard('web')->user()->image)}}" width="" height="">
 
                 </div>
                 <div class="col-md-2"></div>

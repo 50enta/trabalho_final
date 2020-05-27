@@ -47,21 +47,20 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                @foreach($dados['imagem'] as $item)
-{{--                                    @foreach($results as $categoria )--}}
+
+                                    @foreach($galeria_imagems as $item)
+
 
                                     <tr>
                                         <td>{{$item->id}}</td>
 
                                         <td><img src="{{ asset('images/'.$item->image)}}" style="width: 200px; height: 150px"></td>
 
-{{--                                        <td >{{$item->categoria_imagens_id}}{{$categoria->descricao}}</td>--}}
+                                        <td > {{$item->descricao}}</td>
 
 
                                         <td class="text-right">
-                                            {{--                                            <a class="btn btn-primary detbnt center " data-toggle="modal" data-target="#mod-{{$item->id}}" >--}}
-                                            {{--                                                <i class="batch-icon batch-icon-eye" ></i>--}}
-                                            {{--                                            </a>--}}
+
                                             <a class="btn btn-success editbnt center  " data-toggle="modal"  data-target="#mod-edit-{{$item->id}}">
                                                 <i class="batch-icon batch-icon-pen"></i>
                                             </a>
@@ -72,7 +71,6 @@
 
                                     </tr>
 
-{{--                                @endforeach--}}
                                 @endforeach
 
                                 </tbody>

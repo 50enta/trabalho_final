@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\categoria_itens;
 use App\itens_material;
 use Illuminate\Http\Request;
-
+use DB;
 class ItensMaterialController extends Controller
 {
     /**
@@ -18,7 +18,9 @@ class ItensMaterialController extends Controller
         $dados['itens']=itens_material::where('apagado','0')->get();
         $dados['categoria_itens']=categoria_itens::where('apagado','0')->get();
 
-        return view('admin.telaRegistar_itensMaterias', compact('dados'));
+        $data = DB::select("SELECT Itens.id, Itens.descricao, Itens.quantidade, Categorias.descricao FROM itens_materials as Itens INNER JOIN categoria_itens as Categorias ON Itens.categoria_itens_id = Categorias.id;");
+
+        return view('admin.telaRegistar_itensMaterias', compact('dados'), ['itens_materials' => $data]);
     }
 
     /**

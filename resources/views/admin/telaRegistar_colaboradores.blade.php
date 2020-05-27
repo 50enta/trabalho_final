@@ -28,6 +28,56 @@
                     </div>
 
                 </div>
+
+                <div class="row">
+
+                    <!-- Start XP Col -->
+                    <div class="col-lg-12">
+
+
+
+
+                        <div class="table-responsive">
+                            <table class="table table-bordered" id="editTable">
+                                <thead class="thead-light">
+                                <tr>
+                                    <th>No</th>
+                                    <th>Nome </th>
+                                    <th>Contacto </th>
+                                    <th>Funcao</th>
+
+                                    <th class="">Operacoes</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                @foreach($dados['Colaboradores'] as $item)
+                                    <tr>
+                                        <td>{{$item->id}}</td>
+                                        <td>{{$item->nome}}</td>
+                                        <td>{{$item->contacto}}</td>
+                                        <td>{{$item->funcao}}</td>
+                                        <td class="text-right">
+                                            <a class="btn btn-primary detbnt center " data-toggle="modal" data-target="#mod-{{$item->id}}" >
+                                                <i class="batch-icon batch-icon-eye" ></i>
+                                            </a>
+                                            <a class="btn btn-success editbnt center  " data-toggle="modal"  data-target="#mod-edit-{{$item->id}}">
+                                                <i class="batch-icon batch-icon-pen"></i>
+                                            </a>
+                                            <a class="btn btn-danger deletebnt center " data-toggle="modal" data-target="#mod-del-{{$item->id}}">
+                                                <i class="batch-icon batch-icon-bin-alt-2 "></i>
+                                            </a>
+                                        </td>
+
+                                    </tr>
+                                @endforeach
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                </div>
+
             </div>
 
         </div>
@@ -78,54 +128,6 @@
 
 
 
-        <div class="row">
-
-                <!-- Start XP Col -->
-                <div class="col-lg-12">
-
-
-
-
-                    <div class="table-responsive">
-                        <table class="table table-striped table-bordered" id="editTable">
-                            <thead>
-                            <tr>
-                                <th>No</th>
-                                <th>Nome </th>
-                                <th>Contacto </th>
-                                <th>Funcao</th>
-
-                                <th class="">Operacoes</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            @foreach($dados['b] as $item)
-                                <tr>
-                                    <td>{{$item->id}}</td>
-                                    <td>{{$item->nome}}</td>
-                                    <td>{{$item->contacto}}</td>
-                                    <td>{{$item->funcao}}</td>
-                                    <td class="text-right">
-                                        <a class="btn btn-primary detbnt center " data-toggle="modal" data-target="#mod-{{$item->id}}" >
-                                            <i class="batch-icon batch-icon-eye" ></i>
-                                        </a>
-                                        <a class="btn btn-success editbnt center  " data-toggle="modal"  data-target="#mod-edit-{{$item->id}}">
-                                            <i class="batch-icon batch-icon-pen"></i>
-                                        </a>
-                                        <a class="btn btn-danger deletebnt center " data-toggle="modal" data-target="#mod-del-{{$item->id}}">
-                                            <i class="batch-icon batch-icon-bin-alt-2 "></i>
-                                        </a>
-                                    </td>
-
-                                </tr>
-                            @endforeach
-
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-
-            </div>
 
 
     {{--   form  show modal--}}
@@ -153,10 +155,11 @@
         </div>
     </div>
 @endforeach
-    {{--    end show modal --}}
+{{--        end show modal --}}
 
+    {{--     start edit modal --}}
     @foreach($dados['Colaboradores'] as $key)
-    {{-- start edit modal --}}
+
     <div class="modal fade" id="mod-edit-{{$key->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
 
@@ -206,10 +209,10 @@
 
 
     @endforeach
-    {{--    end edit modal--}}
+{{--        end edit modal--}}
 
 
-    {{-- start modal delete--}}
+{{--     start modal delete--}}
     @foreach($dados['Colaboradores'] as $key)
     <div class="modal fade" id="mod-del-{{$key->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
@@ -243,69 +246,7 @@
 
     @endforeach
     {{--    end delete modal--}}
-    <script>
-{{--        edit function  --}}
-    $(document).ready(function(){
-        $('.editbnt').on('click', function(){
 
-            $('#editmodal').modal('show');
-
-            $tr =$(this).closest('tr');
-            var data = $tr.children("td").map(function(){
-                return $(this).text();
-
-            }).get();
-            console.log(data);
-            $('#id').val(data[0]);
-            $('#descricao').val(data[1]);
-            $('#status').val(data[2]);
-        });
-    });
-
-
-//show form
-
-$(document).on('click', '.detbnt',function(){
-    $('#detmodal').modal('show');
-    $('.modal-title').text('Detalhes');
-});
-
-
-//delete
-$('.deletebnt').on('click', function () {
-    $('#deletemodal').modal('show') ;
-    $tr =$(this).closest('tr');
-
-    var data = $tr.children('td').map(function(){
-        return $(this).text();
-    }).get();
-
-    console.log(data);
-    $('#delete_id').val(data[0]);
-});
-
-$('#deleteFormID').on('submit', function(e){
-    e.preventDefault();
-    var id =$('#delete_id').val();
-
-    $.ajax({
-        type: "DELETE",
-        url:"/tipoDelete/"+id,
-        data:$('#deleteFormID').serialize(),
-        success: function (response) {
-            console.log(response);
-            $('#deletemodal').modal('hide')
-            alert("data delected");
-            //    location.reload();
-        },
-        error:function (error) {
-            console.log(error);
-
-        }
-    });
-});
-
-    </script>
 
 @endSection
 

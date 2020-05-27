@@ -51,11 +51,11 @@
                                         <td>{{$item->id}}</td>
                                         <td>{{$item->descricao}}</td>
 
-{{--                                        <td><img src="{{ asset('/images/'.$item->image)}}" width="100px" height="70px"></td>--}}
+
                                         <td class="text-right">
-                                            <a class="btn btn-primary detbnt center " data-toggle="modal" data-target="#mod-{{$item->id}}" >
-                                                <i class="batch-icon batch-icon-eye" ></i>
-                                            </a>
+{{--                                            <a class="btn btn-primary detbnt center " data-toggle="modal" data-target="#mod-{{$item->id}}" >--}}
+{{--                                                <i class="batch-icon batch-icon-eye" ></i>--}}
+{{--                                            </a>--}}
                                             <a class="btn btn-success editbnt center  " data-toggle="modal"  data-target="#mod-edit-{{$item->id}}">
                                                 <i class="batch-icon batch-icon-pen"></i>
                                             </a>

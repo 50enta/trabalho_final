@@ -26,10 +26,65 @@
                     </div>
 
                 </div>
+
+                <div class="row">
+
+                    <!-- Start XP Col -->
+                    <div class="col-lg-12">
+
+
+
+
+                        <div class="table-datatable">
+                            <table class="table table-bordered" id="editTable" >
+                                <thead class="thead-light">
+                                <tr>
+                                    <th>No</th>
+                                    <th>Categoria do item </th>
+                                    <th>Descricao </th>
+                                    <th>Quantidade </th>
+
+                                    <th class="">Operacoes</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                @foreach($itens_materials as $item)
+
+                                    <tr>
+                                        <td>{{$item->id}}</td>
+                                        <td value="">{{$item->descricao}}</td>
+                                        <td>{{$item->descricao}}</td>
+                                        <td>{{$item->quantidade}}</td>
+
+                                        <td class="text-right">
+                                            <a class="btn btn-primary detbnt center " data-toggle="modal" data-target="#mod-{{$item->id}}" >
+                                                <i class="batch-icon batch-icon-eye" ></i>
+                                            </a>
+                                            <a class="btn btn-success editbnt center  " data-toggle="modal"  data-target="#mod-edit-{{$item->id}}">
+                                                <i class="batch-icon batch-icon-pen"></i>
+                                            </a>
+                                            <a class="btn btn-danger deletebnt center " data-toggle="modal" data-target="#mod-del-{{$item->id}}">
+                                                <i class="batch-icon batch-icon-bin-alt-2 "></i>
+                                            </a>
+                                        </td>
+
+                                    </tr>
+                                    {{--                        @endforeach--}}
+                                @endforeach
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                </div>
             </div>
 
         </div>
     </div>
+
+
+
 
 
 
@@ -129,57 +184,6 @@
 
 
 
-    <div class="row">
-
-        <!-- Start XP Col -->
-        <div class="col-lg-12">
-
-
-
-
-            <div class="table-datatable">
-                <table class="table table-bordered" id="editTable" >
-                    <thead class="thead-light">
-                    <tr>
-                        <th>No</th>
-                        <th>Categoria do item </th>
-                        <th>Descricao </th>
-                        <th>Quantidade </th>
-
-                        <th class="">Operacoes</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    @foreach($dados['itens'] as $item)
-{{--                        @foreach($dados['categoria_itens'] as $categoria)--}}
-                        <tr>
-                            <td>{{$item->id}}</td>
-                            <td value="{{$item->categoria_itens_id}}">{{$item->categoria_itens_id}}</td>
-                            <td>{{$item->descricao}}</td>
-                            <td>{{$item->quantidade}}</td>
-
-                            <td class="text-right">
-                                <a class="btn btn-primary detbnt center " data-toggle="modal" data-target="#mod-{{$item->id}}" >
-                                    <i class="batch-icon batch-icon-eye" ></i>
-                                </a>
-                                <a class="btn btn-success editbnt center  " data-toggle="modal"  data-target="#mod-edit-{{$item->id}}">
-                                    <i class="batch-icon batch-icon-pen"></i>
-                                </a>
-                                <a class="btn btn-danger deletebnt center " data-toggle="modal" data-target="#mod-del-{{$item->id}}">
-                                    <i class="batch-icon batch-icon-bin-alt-2 "></i>
-                                </a>
-                            </td>
-
-                        </tr>
-{{--                        @endforeach--}}
-                    @endforeach
-
-                    </tbody>
-                </table>
-            </div>
-        </div>
-
-    </div>
 
 
     {{--   form  show modal--}}
@@ -212,14 +216,14 @@
     @foreach($dados['itens'] as $key)
         {{-- start edit modal --}}
         <div class="modal fade" id="mod-edit-{{$key->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog" role="document">
+            <div class="modal-dialog modal-lg" role="document">
 
                 <form  method="POST" action="{{ url('/editarItensMaterial') }}">
                     {{csrf_field() }}
 
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">edit Tipo de evento</h5>
+                            <h5 class="modal-title" id="exampleModalLabel">editar itens do Servico</h5>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
@@ -227,14 +231,24 @@
                         <div class="modal-body">
 
                             <div class="row">
-                                <div class="col-lg-6">
+
+                                    <div class="form-group col-md-10 ">
+                                        <label for="categ"> Categoria dos itens</label>
+                                        <select  type="text" class="form-control" id="categoria" name="categoria" onchange="enable()">
+                                            <option value="{{$key->id}}"->{{$key->descricao}}</option>
+                                            @foreach($dados['categoria_itens'] as $item)
+                                                <option value="{{$item->id}}"->{{$item->descricao}}</option>
+                                            @endforeach
+
+                                        </select>
+                                    </div>
 
                                     <div class="form-group">
-                                        <label for="nome">Nome</label>
-                                        <input class="form-control" name="nome"  value="{{$key->nome}}"></input>
+                                        <label for="nome">Descricao</label>
+                                        <input class="form-control" name="nome"  value="{{$key->descricao}}"></input>
                                     </div>
                                     <div class="form-group">
-                                        <label for="telefone"> Telefone</label>
+                                        <label for="telefone"> Quantidade</label>
                                         <input  class="form-control" name="contacto"  value="{{$key->contacto}}"></input>
                                     </div>
 
@@ -247,14 +261,13 @@
                             </div>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+
+                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
                             <button type="submit" class="btn btn-primary">Editar</button>
                         </div>
-                    </div>
                 </form>
             </div>
         </div>
-
 
     @endforeach
     {{--    end edit modal--}}

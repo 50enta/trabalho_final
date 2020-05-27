@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\categoria_imagens;
 use App\galeria_imagem;
 use Illuminate\Http\Request;
+use DB;
 
 class GaleriaImagemController extends Controller
 {
@@ -15,12 +16,18 @@ class GaleriaImagemController extends Controller
      */
     public function index()
     {
-//        $results =DB::select("SELECT * FROM galeria_imagems INNER JOIN categoria_imagens ON galeria_imagems.ID = categoria_imagens.ID ;");
 
         $dados['imagem']= galeria_imagem::where('apagado','0')->get();
         $dados['categoria'] =categoria_imagens::where('apagado','0')->get();
 
-        return view('admin.telaRegistarGaleria', compact('dados'));
+
+
+        $data = DB::select("SELECT * FROM galeria_imagems INNER JOIN categoria_imagens 
+            ON galeria_imagems.categoria_imagens_id = categoria_imagens.id ;");
+
+//        var_dump($data);
+        return view('admin.telaRegistarGaleria', compact('dados'), ['galeria_imagems' => $data] );
+
 
     }
 
@@ -74,12 +81,18 @@ class GaleriaImagemController extends Controller
 
 
     }
-    public function pegarCategoria(){
+    public function buscar(){
 
-        $results =DB::select("SELECT * FROM galeria_imagems INNER JOIN categoria_imagens ON galeria_imagems.ID = categoria_imagens.ID ;");
+        $data = DB::select("SELECT * FROM galeria_imagems INNER JOIN categoria_imagens 
+   ON galeria_imagems.ID = categoria_imagens.ID ;");
 
-        return view('admin.telaRegistarGaleria', ['Categoria_imagens' => $results] );
+        return view('admin.telaRegistarGaleria', ['galeria_imagens' => $data] );
+        var_daump($data);
     }
+
+
+
+
 
     public function editarImagem(Request $request)
     {

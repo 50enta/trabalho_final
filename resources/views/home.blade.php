@@ -91,11 +91,11 @@
 
                 </li>
                 <li>
-                    <h6 class="nav-header">General</h6>
+                    <h6 class="nav-header">Menu Principal</h6>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link active" href="{{ url('/admin') }}">
-                        <i class="batch-icon batch-icon-browser-alt"></i>
+                        <i class=" "></i>
                         Inicio<span class="sr-only">(current)</span>
                     </a>
                 </li>
@@ -205,8 +205,8 @@
         </nav>
         <div class="right-column">
             <nav class="navbar navbar-expand-lg navbar-light bg-white">
-                <a class="navbar-brand d-block d-sm-block d-md-block d-lg-none" href="#">
-                    <img src="{{asset('quilPro/img/logo-dark.png')}}" width="145" height="32.3" alt="QuillPro">
+                <a class="navbar-brand d-block d-sm-block d-md-block d-lg-none" href="{{url('/')}}">
+                 Shigom RF
                 </a>
                 <button id="hamburger" class="hamburger hamburger--slider" type="button" data-target=".sidebar" aria-controls="sidebar" aria-expanded="false" aria-label="Toggle Sidebar">
 						<span class="hamburger-box">

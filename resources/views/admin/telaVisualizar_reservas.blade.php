@@ -16,10 +16,10 @@
                             <div class="col-lg-12 pb-5">
 
                                 <div class="table-responsive">
-                                    <table id="datatable-1" class="table table-datatable table-striped table-hover">
+                                    <table id="datatable-1" class="table table-bordered">
 
 
-                                            <thead>
+                                            <thead class="thead-light">
                                             <tr>
                                                 <th>Nome Cliente</th>
                                                 <th>Tipo Evento</th>
