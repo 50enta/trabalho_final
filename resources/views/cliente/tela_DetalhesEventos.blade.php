@@ -13,6 +13,8 @@
 
 </style>
     <div id="detalhes" class="section">
+
+        <h3 class="title"><span></span> <span style=" color: #dd0a37;"> {{$dados['tipo_eventos']->descricao}}</span></h3>
           <div class="row">
               {{--                        <img  class="bg-signin2" src="{{asset('quilPro/img/space/1.jpg')}}">--}}
                     <di class="col-md-12">

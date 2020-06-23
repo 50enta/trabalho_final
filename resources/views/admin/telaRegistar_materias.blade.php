@@ -32,11 +32,13 @@
 
                     <!-- Start XP Col -->
                     <div class="col-lg-12">
-
+                        <input class="form-control" id="myInput" type="text" placeholder="Procurar..">
+                        <br>
 
                         <div class=" table-datatable" style="margin-right: 5px; margin-left: 5px" >
-                            <table class="table table-striped table-bordered" id="editTable">
-                                <thead>
+                            <table  id="datatable-1" class=" table table-datatable table-bordered" >
+
+                            <thead>
                                 <tr>
                                     <th>No</th>
                                     <th>tipo</th>
@@ -416,6 +418,7 @@
         {{--    end delete modal--}}
 
     </div>
+
 
     <script>
 

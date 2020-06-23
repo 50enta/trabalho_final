@@ -45,6 +45,8 @@
 <!-- CSS - OPTIONAL - START -->
     <!-- Font Awesome -->
     <link rel="stylesheet" href="{{asset('quilPro/fonts/font-awesome/css/font-awesome.min.css')}}">
+
+
     <!-- JVMaps -->
     <link rel="stylesheet" href="{{asset('quilPro/plugins/jvmaps/jqvmap.min.css')}}">
     <!-- CSS - OPTIONAL - END -->
@@ -52,7 +54,8 @@
 <!-- QuillPro Styles -->
     <link rel="stylesheet" href="{{asset('quilPro/css/quillpro/quillpro.css')}}">
 
-
+    <link rel="stylesheet" href="{{asset('quilPro/plugins/datatables/css/responsive.dataTables.min.css')}}">
+    <link rel="stylesheet" href="{{asset('quilPro/plugins/datatables/css/responsive.bootstrap4.min.css')}}">
     <!-- Start of Async Drift Code -->
     <script>
         !function() {
@@ -115,7 +118,7 @@
 
                         <li class="nav-item">
                             <a class="nav-link" href="{{ url('/registoServico') }}"> Servicos</a>
-                            <a class="nav-link" href="{{ url('/registoItens') }}"> itens de Servicos</a>
+{{--                            <a class="nav-link" href="{{ url('/registoItens') }}"> itens de Servicos</a>--}}
                         </li>
 
 
@@ -128,9 +131,7 @@
                         Materias
                     </a>
                     <ul class="nav nav-pills collapse" id="menu-ecommerce">
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ url('/registoMaterial') }}"> Registar Materiais</a>
-                        </li>
+
                         <li class="nav-item">
                             <a class="nav-link" href="{{ url('/registoCategoriaItens') }}"> Categoria dos itens</a>
                         </li>
@@ -359,7 +360,12 @@
 <!-- Image Placeholder -->
 <script type="text/javascript" src="{{asset('quilPro/js/misc/holder.min.js')}}"></script>
 <!-- SCRIPTS - OPTIONAL END -->
+<!-- These plugins only need for the run this page -->
 
+<!-- Datatables -->
+<script type="text/javascript" src="{{asset('quilPro/plugins/datatables/js/jquery.dataTables.min.js')}}"></script>
+<script type="text/javascript" src="{{asset('quilPro/plugins/datatables/js/dataTables.bootstrap4.min.js')}}"></script>
+<script type="text/javascript" src="{{asset('quilPro/plugins/datatables/js/dataTables.responsive.min.js')}}"></script>
 {{--<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>--}}
 
 

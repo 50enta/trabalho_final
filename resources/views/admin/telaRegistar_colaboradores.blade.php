@@ -10,8 +10,7 @@
             <div class="card m-b-30">
                 <div class="card-header bg-white">
                     <h5 class="card-title text-black">Registar Colaboradores </h5>
-                    <h6 class="card-subtitle">registe todos <code
-                            class="highlighter-rouge">Colaboradores</code> da empresa .</h6>
+
                 </div>
                 <div class="card-body">
                     <div class="xp-badge">
@@ -38,7 +37,8 @@
 
 
                         <div class="table-responsive">
-                            <table class="table table-bordered" id="editTable">
+                            <table  id="datatable-1" class=" table table-datatable table-bordered" >
+
                                 <thead class="thead-light">
                                 <tr>
                                     <th>No</th>

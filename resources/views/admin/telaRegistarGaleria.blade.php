@@ -35,7 +35,9 @@
 
 
                         <div class="table-datatable">
-                            <table class="table table-bordered" id="editTable"  style="margin-left: 40px; margin-right: 40px;">
+
+                                <table  id="datatable-1" class=" table table-datatable table-bordered"  style="margin-left: 40px; margin-right: 40px;" >
+
                                 <thead class="thead-light">
                                 <tr>
                                     <th>No</th>

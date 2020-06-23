@@ -36,8 +36,9 @@
 
 
                         <div class="table-datatable">
-                            <table class="table table-bordered" id="editTable" >
-                                <thead class="thead-light">
+                            <table  id="datatable-1" class=" table table-datatable table-bordered" >
+
+                            <thead class="thead-light">
                                 <tr>
                                     <th>No</th>
                                     <th>Categoria do item </th>
@@ -310,6 +311,8 @@
 
 
 
+
+
     <script>
 
 
@@ -318,16 +321,17 @@
 
             let categoria = $('select[name = categoria]').val();
             if(categoria == 1){
-                document.getElementById('formato1').readOnly= false;
-                document.getElementById('formato2').readOnly= false;
-                document.getElementById('capacidade').readOnly= false;
+                document.getElementById('formato1').readOnly= true;
+                document.getElementById('formato2').readOnly= true;
+                document.getElementById('capacidade').readOnly= true;
+
             }
 
             else{
 
-                document.getElementById('formato1').readOnly= true;
-                document.getElementById('formato2').readOnly= true;
-                document.getElementById('capacidade').readOnly= true;
+                document.getElementById('formato1').readOnly= false;
+                document.getElementById('formato2').readOnly= false;
+                document.getElementById('capacidade').readOnly= false;
 
             }
             if(categoria == 3){

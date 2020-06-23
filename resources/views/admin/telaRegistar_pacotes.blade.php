@@ -84,8 +84,8 @@
 
                         </div>
                         <div class=" border col-md-4">
-                           <h4>Incluir itens de Servicos</h4>
-                                @foreach($dados['itens_servico'] as $item)
+                           <h4>Incluir Servicos</h4>
+                                @foreach($dados['Servicos3'] as $item)
 
 
                                     <div class="form-check">
@@ -122,8 +122,9 @@
     <div class=" row">
         <div class="col-lg-12">
         <div class="table-responsive">
-            <table class="table table-striped table-bordered" id="editTable">
-                <thead>
+            <table  id="datatable-1" class=" table table-datatable table-bordered" >
+
+            <thead>
                 <tr>
                     <th>No</th>
                     <th>Descricao</th>

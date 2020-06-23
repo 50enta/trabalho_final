@@ -32,7 +32,9 @@
                     <!-- Start XP Col -->
                     <div class="col-lg-12">
 
-                        <table class="table table-bordered" id="editTable">
+
+                            <table  id="datatable-1" class=" table table-datatable table-bordered" >
+
                             <thead class="thead-light">
                             <tr>
                                 <th>No</th>
@@ -225,7 +227,6 @@
 
 
 {{--    end delete modal--}}
-
 
 
 

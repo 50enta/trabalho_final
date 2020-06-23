@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Redirect;
 use MaddHatter\LaravelFullCalendar\ServiceProvider;
 use MaddHatter\LaravelFullcalendar\Facades\Calendar;
 use Validator;
+use DB;
 
 class EventoController extends Controller
 {
@@ -84,9 +85,11 @@ class EventoController extends Controller
 
     public function verReservas()
     {
+        $data = DB::select("SELECT * FROM eventos INNER JOIN users ON eventos.user_id= users.id INNER JOIN tipos_eventos ON eventos.tipos_evento_id = tipos_eventos.id ;");
+
         $dados['users']=User::all();
         $dados['eventos']=Evento::all();
-        return view('admin.telaVisualizar_reservas', compact('dados'));
+        return view('admin.telaVisualizar_reservas',compact('dados'), ['eventos' => $data]);
 
     }
 

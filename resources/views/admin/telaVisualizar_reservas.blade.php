@@ -16,28 +16,45 @@
                             <div class="col-lg-12 pb-5">
 
                                 <div class="table-responsive">
-                                    <table id="datatable-1" class="table table-bordered">
+                                    <table  id="datatable-1" class=" table table-datatable table-bordered" >
 
 
-                                            <thead class="thead-light">
+
+
+                                    <thead class="thead-light">
                                             <tr>
                                                 <th>Nome Cliente</th>
                                                 <th>Tipo Evento</th>
                                                 <th>Data Inicio</th>
                                                 <th>Data Fim</th>
+                                                <th name="status">status</th>
+                                                <th>...</th>
                                             </tr>
                                             </thead>
                                             <tbody>
-                                            @foreach($dados['eventos'] as $item)
+                                            @foreach($eventos as $item)
 
                                             <tr>
-                                                <td>{{$item->user_id}}</td>
-                                                <td>{{$item->tipos_evento_id}}</td>
-{{--                                                <td>--}}
-{{--                                                    <span class="badge badge-primary">Disney</span>--}}
-{{--                                                </td>--}}
+                                                <td>{{$item->name}}</td>
+                                                <td>{{$item->descricao}}</td>
                                                 <td>{{$item->data_inicio}}</td>
                                                 <td>{{$item->data_fim}}</td>
+                                                <td>
+
+                                                @if($item->status==='Pendente')
+                                                  Pendente
+                                                @elseif($item->status==='Aprovado')
+                                                    Aprovado
+                                                @else
+                                                    Reprovado
+                                                @endif
+                                                </td>
+                                                <td class="text-left">
+
+                                                    <a class="btn btn-success editbnt center " >Apagar</a>
+                                                    <a class="btn btn-success  center " >Aprovar</a>
+                                                    <a class="btn btn-danger center " >Reprovar</a>
+
 
                                             </tr>
                                            </tbody>
@@ -53,5 +70,11 @@
     </div>
 
 
+
+
+
+    <script>
+
+    </script>
 
 @endsection
