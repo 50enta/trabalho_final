@@ -186,7 +186,7 @@
 					<!-- home content -->
 					<div class="col-md-8 col-md-offset-2">
 						<div class="home-content">
-                            <h1>Organize seu evento conosco</h1>
+                            <h1>Organize seu evento conosjco</h1>
                             <h2>e Desfrute dos melhores serviços.</h2>
 							<a href="{{ url('/efectuarReserva') }}" class="main-btn">Agendar Evento</a>
 						</div>
