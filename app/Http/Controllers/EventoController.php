@@ -85,7 +85,8 @@ class EventoController extends Controller
 
     public function verReservas()
     {
-        $data = DB::select("SELECT * FROM eventos INNER JOIN users ON eventos.user_id= users.id INNER JOIN tipos_eventos ON eventos.tipos_evento_id = tipos_eventos.id ;");
+        //        $data = DB::select("SELECT * FROM eventos INNER JOIN users ON eventos.user_id= users.id INNER JOIN tipos_eventos ON eventos.tipos_evento_id = tipos_eventos.id ;");
+        $data = DB::select("select a1.*, us.name from (select ev.*, te.descricao des_tp from (eventos ev left join `tipos_eventos` te on ev.tipos_evento_id = te.id)) a1 left join users us on a1.user_id = us.id;");
 
         $dados['users']=User::all();
         $dados['eventos']=Evento::all();
@@ -112,6 +113,25 @@ class EventoController extends Controller
 
         $dados['eventos'] =Evento::all();
         return view('admin.telaAprovar_Reservas', compact('dados'));
+    }
+
+
+    public function aprovarReserva($evento_id)
+    {
+//        $data = DB::select("SELECT * FROM eventos INNER JOIN users ON eventos.user_id= users.id INNER JOIN tipos_eventos ON eventos.tipos_evento_id = tipos_eventos.id ;");
+        $data = DB::select("select a1.*, us.name from (select ev.*, te.descricao des_tp from (eventos ev left join `tipos_eventos` te on ev.tipos_evento_id = te.id)) a1 left join users us on a1.user_id = us.id order by id desc;");
+
+        $evento = Evento::find($evento_id);
+        $evento->status = 'Aprovado';
+        $evento->save();
+
+
+
+        $dados['eventos']=Evento::all();
+
+        return \redirect()->back()->with('dados');
+
+
     }
 
     public function index2()
@@ -192,4 +212,22 @@ class EventoController extends Controller
     {
         //
     }
+
+    public function alert(Request $request)
+    {
+        $events = itens_material::find($request->itens_material_id);
+
+        if (!$events->apagado){
+            $events->apagado = '1';
+//            echo "eliminado com sucesso";
+            if ($events->save()){
+                return redirect('/verreservas');
+            }
+        }else{
+            echo "item ja eliminado";
+            return;
+        }
+        echo "Oopp's!! Ocorreu algum erro, por favor reinicie o sistema e volte a tentar...";
+    }
+
 }

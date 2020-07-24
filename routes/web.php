@@ -11,9 +11,11 @@
 |
 */
 
-//Route::get('/', function () {
-//    return view('welcome');
-//});
+Route::get('/email', function () {
+    $evento=\App\evento::find(1);
+    $user=\App\User::find(1);
+    Notification::send($user, new \App\Notifications\Feedback($evento));
+});
 
 
 Route::group(['middleware' =>'admin'], function (){
@@ -76,7 +78,7 @@ Route::post('/editarImagem', 'GaleriaImagemController@editarImagem');
 Route::post('/eliminarImagem', 'GaleriaImagemController@eliminarImagem');
 
 Route::get('/verReservas', 'EventoController@verReservas');
-
+Route::post('/aprovarReserva/{id}', 'EventoController@aprovarReserva');
 
 
 //cliente
