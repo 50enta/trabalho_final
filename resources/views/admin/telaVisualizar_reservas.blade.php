@@ -67,12 +67,12 @@
                                                         <td class="text-left">
                                                             @if(  $item->status == 'Pendente')
                                                                 <a class="btn btn-success editbnt center  " data-toggle="modal"
-                                                                   data-target="#mod-apr-{{$item->id}}" id="aprovar" onclick="desable()">
+                                                                   data-target="#mod-apr-{{$item->id}}" id="aprovar" >
                                                                     <i class="batch-icon batch-icon-tick"></i>
                                                                 </a>
 
                                                                 <a class="btn btn-danger deletebnt center " data-toggle="modal"
-                                                                   data-target="#mod-rep-{{$item->id}}" id="reprovar" onclick="desable()">
+                                                                   data-target="#mod-rep-{{$item->id}}" id="reprovar" >
                                                                     <i class="batch-icon batch-icon-cross "></i>
                                                                 </a>
                                                             @endif
@@ -161,24 +161,6 @@
 {{--end modalreprovar--}}
 
 
-    <script>
-function desable() {
-   $status = eventos::find($id)
 
-
-    let status = $('td[name=status]').html();
-   if(status === 'Pendente'){
-       document.getElementById('aprovar').disabled= false;
-       document.getElementById('reprovar').disabled= false;
-   }else
-       if(status === 'Aprovado'){
-           document.getElementById('aprovar').disabled= true;
-           document.getElementById('reprovar').disabled= true;
-   }else{
-           document.getElementById('aprovar').disabled= true;
-           document.getElementById('reprovar').disabled= true;
-       }
-}
-    </script>
 
 @endsection
