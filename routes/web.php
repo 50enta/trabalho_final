@@ -79,6 +79,8 @@ Route::post('/eliminarImagem', 'GaleriaImagemController@eliminarImagem');
 
 Route::get('/verReservas', 'EventoController@verReservas');
 Route::post('/aprovarReserva/{id}', 'EventoController@aprovarReserva');
+Route::post('/reprovarReserva/{id}', 'EventoController@reprovarReserva');
+
 
 
 //cliente
