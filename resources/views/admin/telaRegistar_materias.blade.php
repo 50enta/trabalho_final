@@ -444,7 +444,7 @@
                  document.getElementById('cor').disabled= false;
              }
              else{
-                 document.getElementById('cor').disabled= ;
+                 document.getElementById('cor').disabled= true;
              }
 
             if(tipo === 'mesa' || tipo === 'cadeira'){
