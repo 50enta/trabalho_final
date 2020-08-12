@@ -20,7 +20,7 @@ class CreateEventosTable extends Migration
             $table->dateTime('data_inicio');
             $table->dateTime('data_fim');
             $table->double('preco')->nullable();
-            $table->string('cor');
+            $table->string('cor')->default('#f05050');
             $table->string('status')->default('Pendente');
 
             $table->integer('user_id')->unsigned()->nullable();
