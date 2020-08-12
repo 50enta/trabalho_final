@@ -989,8 +989,17 @@ p{
     position: relative;
     /*margin: 0 auto; */
     }
+/*descricao do evento cores*/
+.ocup{
+    background-color:#0ad251;
+}
+.inter{
+    background-color: #D84315;
 
-
+}
+.nen{
+    background-color: #1a73e9;
+}
 .profile-picture.profile-picture-lg {
     width: 150px;
     height: 150px;
