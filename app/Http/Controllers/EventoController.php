@@ -36,6 +36,7 @@ class EventoController extends Controller
                 [
                     'descricao' =>null,
                     'color' => $event->cor,
+
                 ]
 
             );
@@ -43,8 +44,6 @@ class EventoController extends Controller
 
         $calendar_details = Calendar::addEvents($event_list);
         return view('cliente.telaEfectuar_Reserva', compact(['calendar_details','dados']) );
-//        return view('cliente.tela_DetalhesEventos', compact('dados'));
-//        return view('admin.telaAprovar_Reservas', compact('$calendar_details ') );
 
 
     }
@@ -56,7 +55,7 @@ class EventoController extends Controller
             'user_id' => 'required',
             'data_inicio' => 'required',
             'data_fim' => 'required',
-            'cor' => 'required',
+            'cor' => '#f05050',
              'tipos_evento_id' => 'required'
 
         ]);
@@ -71,7 +70,7 @@ class EventoController extends Controller
         $event->user_id = $request['user_id'];
         $event->data_inicio = $request['data_inicio'];
         $event->data_fim = $request['data_fim'];
-        $event->cor = $request->input('cor');
+//        $event->cor = $request->input('cor');
         $event->save();
 
         \Session::flash('success', 'O seu pedido foi enviado com sucesso, aguarde pela confirmacao!');
@@ -105,15 +104,7 @@ class EventoController extends Controller
         return view('admin.telaAprovar_Reservas', compact('dados'));
     }
 
-    public function reprovar($evento_id)
-    {
-        $evento = Evento::find($evento_id);
-        $evento->status = 'Reprovado';
-        $evento->save();
 
-        $dados['eventos'] =Evento::all();
-        return view('admin.telaAprovar_Reservas', compact('dados'));
-    }
 
 
     public function aprovarReserva($evento_id)
@@ -133,7 +124,23 @@ class EventoController extends Controller
 
 
     }
+    public function reprovarReserva($evento_id)
+    {
+//        $data = DB::select("SELECT * FROM eventos INNER JOIN users ON eventos.user_id= users.id INNER JOIN tipos_eventos ON eventos.tipos_evento_id = tipos_eventos.id ;");
+        $data = DB::select("select a1.*, us.name from (select ev.*, te.descricao des_tp from (eventos ev left join `tipos_eventos` te on ev.tipos_evento_id = te.id)) a1 left join users us on a1.user_id = us.id order by id desc;");
 
+        $evento = Evento::find($evento_id);
+        $evento->status = 'Reprovado';
+        $evento->save();
+
+
+
+        $dados['eventos']=Evento::all();
+
+        return \redirect()->back()->with('dados');
+
+
+    }
     public function index2()
     {
 
@@ -213,21 +220,5 @@ class EventoController extends Controller
         //
     }
 
-    public function alert(Request $request)
-    {
-        $events = itens_material::find($request->itens_material_id);
-
-        if (!$events->apagado){
-            $events->apagado = '1';
-//            echo "eliminado com sucesso";
-            if ($events->save()){
-                return redirect('/verreservas');
-            }
-        }else{
-            echo "item ja eliminado";
-            return;
-        }
-        echo "Oopp's!! Ocorreu algum erro, por favor reinicie o sistema e volte a tentar...";
-    }
 
 }
