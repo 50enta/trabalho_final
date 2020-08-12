@@ -51,6 +51,13 @@
                     <h3 class="title"><span>Agendar</span> <span style=" color: #dd0a37;">Evento</span></h3>
                 </div>
                 <div class="col-md-4 " id="form" style="border-collapse: collapse" >
+{{--                    <div class="col-sm-6 card">--}}
+{{--                       <h4>Descricao dos</h4>--}}
+
+{{--                        <div class='ocup'>Ocupado</div> <br><!-- removed id="1" -->--}}
+{{--                        <div class='inter'>Interesse</div> <br>      <!-- removed id="2" -->--}}
+{{--                        <div class='nen '>Nenhum</div><br> <!-- removed id="3" -->--}}
+{{--                    </div>--}}
 
                     @if(auth::user())
                     <form  method='POST' action="{{ url('/adicionarReserva') }}" class="">
@@ -82,10 +89,10 @@
                             <label for="nome"> Data fim</label>
                             <input type= "datetime-local" class="form-control" name="data_fim" id="data_fim"  placeholder=" ">
                         </div>
-                        <div class="form-group col-md-12 text-left">
-                            <label for="nome"> Cor</label>
-                            <input type= "color" class="form-control" name="cor" id="cor"  placeholder=" ">
-                        </div>
+{{--                        <div class="form-group col-md-12 text-left">--}}
+{{--                            <label for="nome"> Cor</label>--}}
+{{--                            <input type= "color" class="form-control" name="cor" id="cor"  placeholder=" ">--}}
+{{--                        </div>--}}
 
 
                         <div class="form-group col-md-12 text-right">
