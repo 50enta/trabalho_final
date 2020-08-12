@@ -32,26 +32,52 @@
                                             </tr>
                                             </thead>
                                             <tbody>
-                                            @foreach($eventos as $item)
 
-                                            <tr>
+                                            @foreach($eventos as $item)
+                                                @if($item->status == 'Pendente')
+                                            <tr style="background-color:#748690">
                                                 <td>{{$item->name}}</td>
                                                 <td>{{$item->descricao}}</td>
                                                 <td>{{$item->data_inicio}}</td>
                                                 <td>{{$item->data_fim}}</td>
-                                                <td>{{$item->status}}</td>
+
+                                                    <td>{{$item->status}}</td>
+
                                                 <td class="text-left">
 
                                                     <a class="btn btn-success editbnt center  " data-toggle="modal"
-                                                       data-target="#mod-apr-{{$item->id}}">
-                                                        <i class="batch-icon batch-icon-pen"></i>
+                                                       data-target="#mod-apr-{{$item->id}}" onchange="desable()">
+                                                        <i class="batch-icon batch-icon-tick"></i>
                                                     </a>
                                                     <a class="btn btn-danger deletebnt center " data-toggle="modal"
                                                        data-target="#mod-rep-{{$item->id}}">
-                                                        <i class="batch-icon batch-icon-bin-alt-2 "></i>
+                                                        <i class="batch-icon batch-icon-cross "></i>
                                                     </a>
 
                                             </tr>
+                                                @else
+                                                    <tr >
+                                                        <td>{{$item->name}}</td>
+                                                        <td>{{$item->descricao}}</td>
+                                                        <td>{{$item->data_inicio}}</td>
+                                                        <td>{{$item->data_fim}}</td>
+
+                                                        <td>{{$item->status}}</td>
+
+                                                        <td class="text-left">
+                                                            @if(  $item->status == 'Pendente')
+                                                                <a class="btn btn-success editbnt center  " data-toggle="modal"
+                                                                   data-target="#mod-apr-{{$item->id}}" id="aprovar" onclick="desable()">
+                                                                    <i class="batch-icon batch-icon-tick"></i>
+                                                                </a>
+
+                                                                <a class="btn btn-danger deletebnt center " data-toggle="modal"
+                                                                   data-target="#mod-rep-{{$item->id}}" id="reprovar" onclick="desable()">
+                                                                    <i class="batch-icon batch-icon-cross "></i>
+                                                                </a>
+                                                            @endif
+                                                    </tr>
+                                                @endif
                                            </tbody>
                                         @endforeach
                                     </table>
@@ -98,14 +124,13 @@
 
 
     @endforeach
-
     {{-- start modal Reprovar--}}
     @foreach($eventos as $key)
         <div class="modal fade" id="mod-rep-{{$key->id}}" tabindex="-1" role="dialog"
              aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
 
-                <form method="POST" action="{{ url('/verReservas') }}">
+                <form method="POST" action="{{ url('/reprovarReserva/'.$key->id)}}">
                     {{csrf_field() }}
 
                     <div class="modal-content">
@@ -116,7 +141,7 @@
                             </button>
                         </div>
                         <div class="modal-body">
-                            Tem certeza que pretende Reprovar esse evento {{$key->descricao}}?
+                            Tem certeza que pretende Reprovar esse evento {{$key->descricao}} - {{$key->id}}?
                         </div>
                         <div style="display: none;">
                             <input name="evento_id" value="{{$key->id}}">
@@ -133,10 +158,27 @@
 
 
     @endforeach
+{{--end modalreprovar--}}
 
 
     <script>
+function desable() {
+   $status = eventos::find($id)
 
+
+    let status = $('td[name=status]').html();
+   if(status === 'Pendente'){
+       document.getElementById('aprovar').disabled= false;
+       document.getElementById('reprovar').disabled= false;
+   }else
+       if(status === 'Aprovado'){
+           document.getElementById('aprovar').disabled= true;
+           document.getElementById('reprovar').disabled= true;
+   }else{
+           document.getElementById('aprovar').disabled= true;
+           document.getElementById('reprovar').disabled= true;
+       }
+}
     </script>
 
 @endsection
