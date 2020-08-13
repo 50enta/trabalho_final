@@ -85,7 +85,7 @@
                         </div>
                         <div class=" border col-md-4">
                            <h4>Incluir Servicos</h4>
-                                @foreach($dados['Servicos3'] as $item)
+                                @foreach($dados['Servicos'] as $item)
 
 
                                     <div class="form-check">
